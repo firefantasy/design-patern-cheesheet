@@ -42,11 +42,15 @@ func (i *Beverage) Add() {
 func (i *Beverage) Make() {
 	fmt.Println("ok, now prepare to make the beverage")
 	// 注意必须使用 i.Impl.xx 调用
+	i.Boil() 
 	i.Impl.Brew()
 	// 预埋钩子，具体实现可以通过重新定义该方法有机会影响模板的执行
 	if i.Impl.IsAddSomething() {
 		i.Impl.Add()
+	} else {
+		i.Add()
 	}
+	i.Pour()
 }
 
 
